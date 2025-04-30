@@ -19,21 +19,63 @@ root.appendChild(header);
 root.appendChild(main);
 root.appendChild(footer);
 
+const searchContentSection = document.createElement("section");
+searchContentSection.classList.add("search-content-section");
+
+const searchContentForm = document.createElement("form");
+searchContentForm.classList.add("search-content-form");
+
+const searchLabel = document.createElement("label");
+searchLabel.classList.add("search-label");
+searchLabel.htmlFor = "search-input";
+searchLabel.innerText = "Busca tu personaje";
+
+const searchInput = document.createElement("input");
+searchInput.classList.add("search-input");
+searchInput.type = "text";
+searchInput.placeholder = "Nombre del personaje...";
+
+const searchButton = document.createElement("button");
+searchButton.classList.add("search-button");
+searchButton.type = "submit";
+searchButton.innerText = "Buscar";
+
+const searchContainer = document.createElement("div");
+searchContainer.classList.add("search-container");
+
+searchContainer.appendChild(searchLabel);
+searchContainer.appendChild(searchInput);
+searchContainer.appendChild(searchButton);
+
+searchContentForm.appendChild(searchContainer);
+
+searchContentSection.appendChild(searchContentForm);
+
+main.appendChild(searchContentSection);
+
 const charactersContent = document.createElement("div");
+
 charactersContent.classList.add("character-content");
 
 main.appendChild(charactersContent);
 
+// Como no sabia como centrar los botones en medio, los envuelvo en un div y aplico el flex
+const buttonContent = document.createElement("div");
+buttonContent.classList.add("button-container");
+
 const prevButton = document.createElement("button");
+prevButton.classList.add("button-prev-next");
 prevButton.innerText = "Load Previous Page";
+
 prevButton.addEventListener("click", async () => {
   console.log("Loading previous page...");
   await displayCharacters(charactersContent, "prev");
 });
 
-main.appendChild(prevButton);
+buttonContent.appendChild(prevButton);
 
 const nextButton = document.createElement("button");
+nextButton.classList.add("button-prev-next");
 nextButton.innerText = "Load Next Page";
 
 nextButton.addEventListener("click", async () => {
@@ -41,4 +83,5 @@ nextButton.addEventListener("click", async () => {
   await displayCharacters(charactersContent, "next");
 });
 
-main.appendChild(nextButton);
+buttonContent.appendChild(nextButton);
+main.appendChild(buttonContent);

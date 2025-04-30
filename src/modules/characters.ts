@@ -31,7 +31,7 @@ async function displayCharacters(container: HTMLElement, direction: Direction) {
 
   const charactersResponse: CharacterResponse = await fetchCharacters(url);
 
-  for (let i = 0; i < charactersResponse.results.length - 1; i++) {
+  for (let i = 0; i < charactersResponse.results.length; i++) {
     const characterNow: Character = charactersResponse.results[i];
 
     const characterElement = document.createElement("div");
